@@ -1,29 +1,31 @@
 import Point from '../models/point';
 
-export const isMovePossible = (matrix, firstPoint, secondPoint) => {
-  { // Input Validation
-    if (!Array.isArray(matrix)) {
-      throw new Error('Matrix is not an array');
-    }
-    if (matrix.length === 0) {
-      return false;
-    }
-    if (!(firstPoint instanceof Point)) {
-      throw new Error('First point is not instance of Point');
-    }
-    if (!(secondPoint instanceof Point)) {
-      throw new Error('Second point is not instance of Point');
-    }
-    if (!firstPoint.isWithinMatrix(matrix)) {
-      throw new Error('First point is outside of matrix');
-    }
-    if (!secondPoint.isWithinMatrix(matrix)) {
-      throw new Error('Second point is outside of matrix');
-    }
-    if (firstPoint.equals(secondPoint)) {
-      throw new Error('Point cannot be applied to itself');
-    }
+const validateInput = (matrix, firstPoint, secondPoint) => {
+  if (!Array.isArray(matrix)) {
+    throw new Error('Matrix is not an array');
   }
+  if (matrix.length === 0) {
+    return false;
+  }
+  if (!(firstPoint instanceof Point)) {
+    throw new Error('First point is not instance of Point');
+  }
+  if (!(secondPoint instanceof Point)) {
+    throw new Error('Second point is not instance of Point');
+  }
+  if (!firstPoint.isWithinMatrix(matrix)) {
+    throw new Error('First point is outside of matrix');
+  }
+  if (!secondPoint.isWithinMatrix(matrix)) {
+    throw new Error('Second point is outside of matrix');
+  }
+  if (firstPoint.equals(secondPoint)) {
+    throw new Error('Point cannot be applied to itself');
+  }
+}
+
+export const isMovePossible = (matrix, firstPoint, secondPoint) => {
+  validateInput(matrix, firstPoint, secondPoint);
 
   const firstValue = matrix[firstPoint.x][firstPoint.y];
   const secondValue = matrix[secondPoint.x][secondPoint.y];
