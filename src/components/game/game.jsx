@@ -3,6 +3,7 @@ import matrixService from '../../services/matrix.service';
 import Point from '../../models/point';
 import Field from '../field/field';
 import Controls from '../controls/controls';
+import GameOver from '../game-over/game-over';
 import './game.css';
 
 class Game extends React.PureComponent {
@@ -12,7 +13,8 @@ class Game extends React.PureComponent {
     this.state = {
       matrix: matrixService.createStartMatrix(),
       firstPoint: null,
-      secondPoint: null
+      secondPoint: null,
+      gameOver: false
     };
 
     this.setPoint = this.setPoint.bind(this);
@@ -25,7 +27,8 @@ class Game extends React.PureComponent {
     this.setState({
       matrix: matrixService.createStartMatrix(),
       firstPoint: null,
-      secondPoint: null
+      secondPoint: null,
+      gameOver: false,
     });
   }
 
@@ -56,6 +59,7 @@ class Game extends React.PureComponent {
         secondPoint = new Point(rowIndex, colIndex);
       }
 
+      let gameOver = prevState.gameOver;
       if (firstPoint && secondPoint &&
         matrixService.isMovePossible(matrix, firstPoint, secondPoint)) {
         matrix[firstPoint.x][firstPoint.y] = undefined;
@@ -64,12 +68,16 @@ class Game extends React.PureComponent {
         secondPoint = null;
 
         matrix = matrix.filter(row => !row.every(v => typeof v === 'undefined'));
+        if (matrix.length === 0) {
+          gameOver = true;
+        }
       }
 
       return {
         ...prevState,
         firstPoint,
         secondPoint,
+        gameOver,
         matrix
       }
     });
@@ -111,6 +119,9 @@ class Game extends React.PureComponent {
           secondPoint={this.state.secondPoint}
           setPoint={(rowIndex, colIndex) => this.setPoint(rowIndex, colIndex)}
         ></Field>
+        {this.state.gameOver &&
+          <GameOver restart={() => this.restart()}></GameOver>
+        }
       </div>
     );
   }

@@ -8,7 +8,7 @@ import './controls.css';
 const Controls = (props) => (
   <div className="Controls">
     <Button bsStyle="primary" onClick={props.refill}>
-      Refill <Glyphicon glyph="equalizer"></Glyphicon>
+      Continue <Glyphicon glyph="equalizer"></Glyphicon>
     </Button>
     <Button bsStyle="danger" onClick={props.restart}>
       Restart <Glyphicon glyph="refresh"></Glyphicon>
