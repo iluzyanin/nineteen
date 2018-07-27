@@ -15,18 +15,18 @@ describe('Matrix service', () => {
         });
       });
       describe('and given empty matrix', () => {
-        it('Should return false', () => {
-          expect(isMovePossible([], new Point(0, 0), new Point(1, 1))).toEqual(false);
+        it('Should throw an exception', () => {
+          expect(() => isMovePossible([[]], new Point(0, 0), new Point(0, 0))).toThrow('Matrix');
         });
       });
       describe('and given invalid first point', () => {
         it('Should throw an exception', () => {
-          expect(() => isMovePossible([[]], 'a', new Point(0, 0))).toThrow('First point');
+          expect(() => isMovePossible([[1]], 'a', new Point(0, 0))).toThrow('First point');
         });
       });
       describe('and given invalid second point', () => {
         it('Should throw an exception', () => {
-          expect(() => isMovePossible([[]], new Point(0, 0), 'a')).toThrow('Second point');
+          expect(() => isMovePossible([[1]], new Point(0, 0), 'a')).toThrow('Second point');
         });
       });
       describe('and given first point outside of matrix boundaries', () => {
@@ -56,7 +56,7 @@ describe('Matrix service', () => {
         it('Should return true for vertical move over zero', () => {
           const matrix = [
             [1, 2, 3, 4, 5, 6, 7, 8, 9],
-            [1, 1, 1, 2, 1, 3, 1, 4, 0],
+            [1, 1, 1, 2, 1, 3, 1, 4, undefined],
             [5, 1, 6, 1, 7, 1, 8, 1, 9],
           ];
           const result = isMovePossible(matrix, new Point(0, 8), new Point(2, 8));
@@ -69,7 +69,7 @@ describe('Matrix service', () => {
         it('Should return true for horizontal move over zero', () => {
           const matrix = [
             [1, 2, 3, 4, 5, 6, 7, 8, 9],
-            [1, 0, 0, 0, 1, 3, 1, 4, 1],
+            [1, undefined, undefined, undefined, 1, 3, 1, 4, 1],
             [5, 1, 6, 1, 7, 1, 8, 1, 9],
           ];
           const result = isMovePossible(matrix, new Point(1, 0), new Point(1, 4));
@@ -82,7 +82,7 @@ describe('Matrix service', () => {
         it('Should return new matrix with applied next line move over zero', () => {
           const matrix = [
             [1, 2, 3, 4, 5, 6, 7, 8, 9],
-            [0, 1, 1, 2, 1, 3, 1, 4, 1],
+            [undefined, 1, 1, 2, 1, 3, 1, 4, 1],
             [5, 1, 6, 1, 7, 1, 8, 1, 9],
           ];
           const result = isMovePossible(startMatrix, new Point(0, 8), new Point(1, 0));

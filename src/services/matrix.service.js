@@ -4,8 +4,8 @@ const validateInput = (matrix, firstPoint, secondPoint) => {
   if (!Array.isArray(matrix)) {
     throw new Error('Matrix is not an array');
   }
-  if (matrix.length === 0) {
-    return false;
+  if (matrix.length === 0 || matrix[0].length === 0) {
+    throw new Error('Matrix is empty');
   }
   if (!(firstPoint instanceof Point)) {
     throw new Error('First point is not instance of Point');
