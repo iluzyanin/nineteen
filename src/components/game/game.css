@@ -1,4 +1,6 @@
 .Game {
-  width: 510px;
-  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 510px 1fr;
+  margin: 20px 0;
+  min-width: 1000px;
 }

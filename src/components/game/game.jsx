@@ -4,6 +4,7 @@ import Point from '../../models/point';
 import Field from '../field/field';
 import Controls from '../controls/controls';
 import GameOver from '../game-over/game-over';
+import HowToPlay from '../how-top-play/how-to-play';
 import './game.css';
 
 class Game extends React.PureComponent {
@@ -109,18 +110,22 @@ class Game extends React.PureComponent {
 
   render() {
     return (
-      <div className="Game">
-        <Controls restart={this.restart} refill={this.refill}></Controls>
-        <Field
-          matrix={this.state.matrix}
-          firstPoint={this.state.firstPoint}
-          secondPoint={this.state.secondPoint}
-          setPoint={(rowIndex, colIndex) => this.setPoint(rowIndex, colIndex)}
-        ></Field>
-        {this.state.gameOver &&
-          <GameOver restart={() => this.restart()}></GameOver>
-        }
-      </div>
+      <main className="Game">
+        <HowToPlay></HowToPlay>
+        <section className="Game-matrix">
+          <Controls restart={this.restart} refill={this.refill}></Controls>
+          <Field
+            matrix={this.state.matrix}
+            firstPoint={this.state.firstPoint}
+            secondPoint={this.state.secondPoint}
+            setPoint={(rowIndex, colIndex) => this.setPoint(rowIndex, colIndex)}
+          ></Field>
+          {this.state.gameOver &&
+            <GameOver restart={() => this.restart()}></GameOver>
+          }
+        </section>
+        <section className="Game-help"></section>
+      </main>
     );
   }
 }
