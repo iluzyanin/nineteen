@@ -4,11 +4,6 @@ export default class Point {
     this.y = y;
   }
 
-  isWithinMatrix(matrix) {
-    return this.x >= 0 && this.x < matrix.length &&
-      this.y >= 0 && this.y < matrix[0].length;
-  }
-
   equals(otherPoint) {
     if (!otherPoint) {
       return false;

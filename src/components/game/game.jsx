@@ -10,26 +10,24 @@ class Game extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      matrix: matrixService.createStartMatrix(),
-      firstPoint: null,
-      secondPoint: null,
-      gameOver: false
-    };
+    this.state = this.buildInitialState();
 
     this.setPoint = this.setPoint.bind(this);
     this.refill = this.refill.bind(this);
     this.restart = this.restart.bind(this);
   }
 
-
-  restart() {
-    this.setState({
+  buildInitialState() {
+    return {
       matrix: matrixService.createStartMatrix(),
       firstPoint: null,
       secondPoint: null,
       gameOver: false,
-    });
+    };
+  }
+
+  restart() {
+    this.setState(this.buildInitialState());
   }
 
   setPoint(rowIndex, colIndex) {
