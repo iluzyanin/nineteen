@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
-  width: 500px;
+  width: 100%;
 }
 
 .Row:last-child {

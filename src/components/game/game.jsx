@@ -111,7 +111,6 @@ class Game extends React.PureComponent {
   render() {
     return (
       <main className="Game">
-        <HowToPlay></HowToPlay>
         <section className="Game-matrix">
           <Controls restart={this.restart} refill={this.refill}></Controls>
           <Field
@@ -124,7 +123,7 @@ class Game extends React.PureComponent {
             <GameOver restart={() => this.restart()}></GameOver>
           }
         </section>
-        <section className="Game-help"></section>
+        <HowToPlay></HowToPlay>
       </main>
     );
   }
