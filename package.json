@@ -15,7 +15,19 @@
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4",
-    "serve": "^9.4.0"
+    "react-scripts": "^3.0.1",
+    "serve": "^11.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
