@@ -15,7 +15,7 @@
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "serve": "^11.0.2"
   },
   "browserslist": {
